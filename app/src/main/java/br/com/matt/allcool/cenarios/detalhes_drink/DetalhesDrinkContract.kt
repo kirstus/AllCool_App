@@ -12,6 +12,8 @@ interface DetalhesDrinkContract {
     }
 
     interface Presenter {
-        fun onExibeInfo(drinkID : String)
+        fun onExibeInfo(drink : Drink,context: Context)
+
+
     }
 }

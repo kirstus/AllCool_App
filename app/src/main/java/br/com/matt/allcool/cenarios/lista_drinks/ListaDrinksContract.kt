@@ -15,6 +15,7 @@ interface ListaDrinksContract {
 
     interface Presenter {
         fun onLongClick(drinks : List<Drink>) : ((index: Int) -> Boolean)
-        fun onLoadLista()
+        fun onLoadLista(context: Context)
+        fun atualizaLista(context: Context)
     }
 }

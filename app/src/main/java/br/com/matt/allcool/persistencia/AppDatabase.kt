@@ -28,6 +28,6 @@ public abstract class AppDatabase : RoomDatabase() {
 
     }
 
-    public abstract fun drinkDao() : DrinkDao
+    public abstract fun drinksDao() : DrinksDao
 
 }

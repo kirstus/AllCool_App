@@ -24,7 +24,7 @@ class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
 
         drinkDetalhado = intent.getSerializableExtra(DRINK_DETAIL) as Drink?
         if(drinkDetalhado != null)
-            presenter.onExibeInfo(drinkDetalhado!!.id)
+            presenter.onExibeInfo(drinkDetalhado!!,this)
 
 
 
@@ -52,7 +52,7 @@ class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
         categoria.text = drinkDetalhado.categoria
         alcoolico.text = drinkDetalhado.alcoolico
         categoria.text = drinkDetalhado.categoria
-        if(drinkDetalhado.classificacao != null){
+        if(drinkDetalhado.classificacao != null && drinkDetalhado.classificacao != "" ){
             classificacao.text = drinkDetalhado.classificacao
             classificacao.visibility = View.VISIBLE
         }
@@ -70,7 +70,7 @@ class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
     }
 
     override fun exibeAviso(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
     override fun exibeCarregamento() {
         val b =1

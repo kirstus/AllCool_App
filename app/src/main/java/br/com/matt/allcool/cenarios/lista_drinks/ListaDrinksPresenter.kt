@@ -1,19 +1,44 @@
 package br.com.matt.allcool.cenarios.lista_drinks
 
+import android.content.Context
 import br.com.matt.allcool.R
 import br.com.matt.allcool.entidades.Drink
 import br.com.matt.allcool.entidades.DrinksList
 import br.com.matt.allcool.network.RetrofitInit
+import br.com.matt.allcool.persistencia.AppDatabase
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksContract.Presenter {
 
-    override fun onLoadLista(){
+    override fun onLoadLista(context: Context){
 
         view.exibeCarregamento()
 
+        val drinksDao= AppDatabase.getInstance(context).drinksDao()
+        doAsync {
+            val listaDrinks = drinksDao.getAll()
+            uiThread {
+                if (!listaDrinks.isEmpty()) {
+
+                    view.exibeAviso(listaDrinks.first().toString())
+                    view.exibeLista(listaDrinks, R.layout.item_drink_vertical)
+
+                } else {
+                    buscaNaNuvem(context)
+                }
+            }
+        }
+
+    }
+
+    override fun atualizaLista(context: Context) = buscaNaNuvem(context)
+
+    private fun buscaNaNuvem(context: Context) {
+        view.exibeAviso("Buscando da internet")
         val drinksService = RetrofitInit().createDrinksService()
 
         val call = drinksService.getAlcoholic()
@@ -26,15 +51,20 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
 
             override fun onResponse(call: Call<DrinksList>, response: Response<DrinksList>) {
                 view.escondeCarregamento()
-                if(response.body() != null){
+                if (response.body() != null) {
+                    val drinksDao= AppDatabase.getInstance(context).drinksDao()
+                    for(drink in response.body()!!.drinks){
+                        doAsync {
+                            drinksDao.insert(drink)
+                        }
+                    }
+
                     view.exibeLista(response.body()!!.drinks, R.layout.item_drink_vertical)
-                }else {
+                } else {
                     view.exibeAviso("Nenhum drink encontrado")
                 }
             }
         })
-        //retrofit
-        //view.exibeLista()
     }
 
     override fun onLongClick(drinks : List<Drink>): (index: Int) -> Boolean {
