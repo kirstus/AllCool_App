@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import br.com.matt.allcool.R
 import br.com.matt.allcool.cenarios.detalhes_drink.DetalhesDrinkActivity
@@ -40,13 +41,11 @@ class ListaDrinksActivity : AppCompatActivity(), ListaDrinksContract.View {
     }
 
     override fun exibeCarregamento() {
-        val b =1
-        //
+        carregamento.visibility = View.VISIBLE
     }
 
     override fun escondeCarregamento() {
-        val a = 2
-        //
+        carregamento.visibility = View.INVISIBLE
     }
 
     override fun exibeLista(drinks : List<Drink>, item_layout : Int) {

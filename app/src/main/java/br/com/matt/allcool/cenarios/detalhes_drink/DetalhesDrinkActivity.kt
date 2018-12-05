@@ -73,12 +73,10 @@ class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
     override fun exibeCarregamento() {
-        val b =1
-        //
+        carregamento.visibility = View.VISIBLE
     }
 
     override fun escondeCarregamento() {
-        val a = 2
-        //
+        carregamento.visibility = View.INVISIBLE
     }
 }

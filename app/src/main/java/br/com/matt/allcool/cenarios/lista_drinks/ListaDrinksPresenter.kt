@@ -23,10 +23,9 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
             val listaDrinks = drinksDao.getAll()
             uiThread {
                 if (!listaDrinks.isEmpty()) {
-
+                    view.exibeCarregamento()
                     view.exibeAviso(listaDrinks.first().toString())
                     view.exibeLista(listaDrinks, R.layout.item_drink_vertical)
-
                 } else {
                     buscaNaNuvem(context)
                 }
@@ -38,6 +37,7 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
     override fun atualizaLista(context: Context) = buscaNaNuvem(context)
 
     private fun buscaNaNuvem(context: Context) {
+        view.exibeCarregamento()
         view.exibeAviso("Buscando da internet")
         val drinksService = RetrofitInit().createDrinksService()
 
@@ -61,6 +61,7 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
 
                     view.exibeLista(response.body()!!.drinks, R.layout.item_drink_vertical)
                 } else {
+                    view.escondeCarregamento()
                     view.exibeAviso("Nenhum drink encontrado")
                 }
             }
