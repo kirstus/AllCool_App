@@ -7,10 +7,14 @@ interface ListaDrinksContract {
 
     interface View {
         fun exibeCarregamento()
-        fun exibeLista()
+        fun escondeCarregamento()
+        fun exibeLista(drinks : List<Drink>, item_layout : Int)
+        fun exibeAviso(msg : String)
+
     }
 
     interface Presenter {
+        fun onLongClick(drinks : List<Drink>) : ((index: Int) -> Boolean)
         fun onLoadLista()
     }
 }
