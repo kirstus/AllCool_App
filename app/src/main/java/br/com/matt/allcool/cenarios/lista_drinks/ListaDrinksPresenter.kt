@@ -16,7 +16,6 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
 
     override fun getRandom(context: Context){
         view.exibeCarregamento()
-        view.exibeAviso("Buscando da internet")
         val drinksService = RetrofitInit().createDrinksService()
 
         val call = drinksService.getRandom()
@@ -54,8 +53,7 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
             val listaDrinks = drinksDao.getAll()
             uiThread {
                 if (!listaDrinks.isEmpty()) {
-                    view.exibeCarregamento()
-                    view.exibeAviso(listaDrinks.first().toString())
+                    view.escondeCarregamento()
                     view.exibeLista(listaDrinks, R.layout.item_drink_vertical)
                 } else {
                     buscaNaNuvem(context)

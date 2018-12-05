@@ -47,12 +47,9 @@ class ListaDrinksAdapter(val context: Context, val drinks : MutableList<Drink>, 
                      longClickListener : ((index: Int) -> Boolean)?){
 
             itemView.nome.text = drink.nome
-            itemView.categoria.text = drink.categoria
-            itemView.alcoolico.text = drink.alcoolico
-            itemView.classificacao.text = drink.classificacao
 
             val thumbnail = GlideApp.with(context)
-                    .load(R.drawable.ic_launcher_background)
+                    .load(R.drawable.drink1)
 
             GlideApp.with(context)
                     .load(drink.thumbnail)

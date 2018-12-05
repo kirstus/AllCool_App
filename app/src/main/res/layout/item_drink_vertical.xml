@@ -3,16 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#DDD"
-    android:layout_margin="5dp"
-    android:padding="5dp">
+    android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/imgDrink"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/drink1"
         android:layout_gravity="top|left"
 
@@ -24,35 +25,16 @@
         <TextView
             android:id="@+id/nome"
             style="@style/Text"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:maxLines="3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center_vertical"
             android:contentDescription="Nome do drink"
             android:text="nome"/>
-
-        <TextView
-            android:id="@+id/categoria"
-            style="@style/Text"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:contentDescription="Categoria do drink"
-            android:text="categoria" />
-
-        <TextView
-            android:id="@+id/classificacao"
-            style="@style/Text"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:contentDescription="Classificação do drink segundo a IBA"
-            android:text="classificacao" />
-
-        <TextView
-            android:id="@+id/alcoolico"
-            style="@style/Text"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:contentDescription="Classificação alcoolica do drink"
-            android:text="alcoolico"/>
     </LinearLayout>
 </LinearLayout>

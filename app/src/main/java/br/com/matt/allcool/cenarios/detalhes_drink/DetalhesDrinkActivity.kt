@@ -7,6 +7,7 @@ import android.widget.Toast
 import br.com.matt.allcool.R
 import br.com.matt.allcool.entidades.Drink
 import br.com.matt.allcool.utilitarios.GlideApp
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detalhes_drink.*
 
 class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
@@ -60,12 +61,12 @@ class DetalhesDrinkActivity : AppCompatActivity(), DetalhesDrinkContract.View {
         instrucoes.text = drinkDetalhado.strInstructions
 
         val thumbnail = GlideApp.with(this@DetalhesDrinkActivity)
-                .load(R.drawable.ic_launcher_background)
+                .load(R.drawable.drink1)
 
         GlideApp.with(this@DetalhesDrinkActivity)
                 .load(drinkDetalhado.thumbnail)
                 .thumbnail(thumbnail)
-                .centerCrop()
+                .apply(RequestOptions.circleCropTransform())
                 .into(imgDrink)
     }
 

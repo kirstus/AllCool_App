@@ -22,7 +22,8 @@
             <ImageView
                 android:id="@+id/imgDrink"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
+                android:padding="30dp"
                 android:src="@drawable/drink1"
                 />
             <TextView
@@ -31,14 +32,41 @@
                 android:textSize="20sp"
                 android:id="@+id/nome"
                 android:text="nome"/>
-            <TextView
-                style="@style/DetailedItem"
-                android:id="@+id/categoria"
-                android:text="categoria"/>
-            <TextView
-                style="@style/DetailedItem"
-                android:id="@+id/alcoolico"
-                android:text="alcoolico"/>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:columnCount="5">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:id="@+id/categoria"
+                    android:text="categoria"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=", "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:id="@+id/alcoolico"
+                    android:text="alcoolico"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text=""/>
+            </GridLayout>
+
             <TextView
                 style="@style/DetailedItem"
                 android:textStyle="italic"
