@@ -1,11 +1,15 @@
 package br.com.matt.allcool.entidades
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+@Entity
 data class Drink(
+        @PrimaryKey
         @SerializedName("idDrink")
-        val id: String = "",
+        val id: String = "0",
         @SerializedName("strDrink")
         val nome : String = "",
         @SerializedName("strCategory")
