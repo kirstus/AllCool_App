@@ -1,4 +1,4 @@
-package br.com.matt.allcool
+package br.com.matt.allcool.entidades
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
