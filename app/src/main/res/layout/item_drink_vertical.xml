@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#DDD"
+    android:layout_margin="5dp"
+    android:padding="5dp">
+
+
+    <ImageView
+        android:id="@+id/imgDrink"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="top|left"
+
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/nome"
+            style="@style/Text"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:contentDescription="Nome do drink"
+            android:text="nome"/>
+
+        <TextView
+            android:id="@+id/categoria"
+            style="@style/Text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:contentDescription="Categoria do drink"
+            android:text="categoria" />
+
+        <TextView
+            android:id="@+id/classificacao"
+            style="@style/Text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:contentDescription="Classificação do drink segundo a IBA"
+            android:text="classificacao" />
+
+        <TextView
+            android:id="@+id/alcoolico"
+            style="@style/Text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:contentDescription="Classificação alcoolica do drink"
+            android:text="alcoolico"/>
+    </LinearLayout>
+</LinearLayout>
