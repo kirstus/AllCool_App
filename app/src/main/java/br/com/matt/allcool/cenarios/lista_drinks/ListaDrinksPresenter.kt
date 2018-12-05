@@ -14,6 +14,37 @@ import retrofit2.Response
 
 class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksContract.Presenter {
 
+    override fun getRandom(context: Context){
+        view.exibeCarregamento()
+        view.exibeAviso("Buscando da internet")
+        val drinksService = RetrofitInit().createDrinksService()
+
+        val call = drinksService.getRandom()
+
+        call.enqueue(object : Callback<DrinksList> {
+            override fun onFailure(call: Call<DrinksList>, t: Throwable) {
+                view.escondeCarregamento()
+                view.exibeAviso("Falha na conexão. Verifique o acesso a internet")
+            }
+
+            override fun onResponse(call: Call<DrinksList>, response: Response<DrinksList>) {
+                view.escondeCarregamento()
+                if(response.body() != null){
+                    val drinksDao = AppDatabase.getInstance(context).drinksDao()
+                    var drink : Drink = response.body()!!.drinks.first()
+                    if(drink.classificacao == null)
+                        drink.classificacao = ""
+                    doAsync {
+                        drinksDao.insert(drink)
+                    }
+                    view.chamaDetalhes(drink)
+                }else {
+                    view.exibeAviso("Drink não encontrado")
+                }
+            }
+        })
+    }
+
     override fun onLoadLista(context: Context){
 
         view.exibeCarregamento()
@@ -38,7 +69,6 @@ class ListaDrinksPresenter(val view : ListaDrinksContract.View) : ListaDrinksCon
 
     private fun buscaNaNuvem(context: Context) {
         view.exibeCarregamento()
-        view.exibeAviso("Buscando da internet")
         val drinksService = RetrofitInit().createDrinksService()
 
         val call = drinksService.getAlcoholic()

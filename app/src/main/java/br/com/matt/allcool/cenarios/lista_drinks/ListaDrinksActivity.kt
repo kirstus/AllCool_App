@@ -25,6 +25,9 @@ class ListaDrinksActivity : AppCompatActivity(), ListaDrinksContract.View {
 
         presenter.onLoadLista(this)
 
+        btnGetRandom.setOnClickListener(){
+            presenter.getRandom(this)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,4 +70,9 @@ class ListaDrinksActivity : AppCompatActivity(), ListaDrinksContract.View {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
+    override fun chamaDetalhes(drink: Drink){
+        val detalhes = Intent(this, DetalhesDrinkActivity::class.java)
+        detalhes.putExtra(DRINK_DETAIL,drink)
+        startActivity(detalhes)
+    }
 }

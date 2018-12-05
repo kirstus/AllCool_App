@@ -10,6 +10,7 @@ interface ListaDrinksContract {
         fun escondeCarregamento()
         fun exibeLista(drinks : List<Drink>, item_layout : Int)
         fun exibeAviso(msg : String)
+        fun chamaDetalhes(drink: Drink)
 
     }
 
@@ -17,5 +18,6 @@ interface ListaDrinksContract {
         fun onLongClick(drinks : List<Drink>) : ((index: Int) -> Boolean)
         fun onLoadLista(context: Context)
         fun atualizaLista(context: Context)
+        fun getRandom(context: Context)
     }
 }

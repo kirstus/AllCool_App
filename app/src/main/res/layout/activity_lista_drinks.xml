@@ -27,7 +27,7 @@
         android:layout_marginBottom="16dp"
         android:elevation="6dp"
         app:fabSize="normal"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/ic_action_shuffle"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
